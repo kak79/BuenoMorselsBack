@@ -5,6 +5,8 @@ import java.util.Objects;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
@@ -13,13 +15,14 @@ import javax.persistence.Table;
 public class Post {
 
 	@Id
-	@Column
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name="post_id")
 	private int postId;
 	@Column
 	private String title;
 	@Column
 	private String description;
-	@Column
+	@Column(name="image_id")
 	private int imageId;
 	@Column
 	private LocalDateTime tdPosted;

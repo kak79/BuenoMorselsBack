@@ -21,10 +21,11 @@ public class Restaurant {
 	@Column
 	private String title;
 	
+	
 	@Column
 	private String description;
 	
-	@Column
+	@Column(name="post_id")
 	private int postId;
 	
 	
