@@ -8,6 +8,8 @@ public class BuenoMorselsApplication {
 
 	public static void main(String[] args) {
 		SpringApplication.run(BuenoMorselsApplication.class, args);
+		//	System.out.println(PexelsApi.RandomImage("meals"));
+
 	}
 
 }
