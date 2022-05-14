@@ -48,7 +48,7 @@ Social Site for Meal Pictures from Restaurants with Account management
   <summary>Table of Contents</summary>
   <ol>
     <li>
-      <a href="https://github.com/kak79/BuenoMorselsBackend/readme.md">About The Project</a>
+      <a href="#about-the-project">About The Project</a>
       <ul>
         <li><a href="#built-with">Built With</a></li>
       </ul>
@@ -61,7 +61,9 @@ Social Site for Meal Pictures from Restaurants with Account management
       </ul>
     </li>
     <li><a href="#usage">Usage</a></li>
-    <li><a href="#roadmap">Roadmap</a></li>
+    <li><a href="#external-api">External Api</a></li>
+    <li><a href="#endpoints">EndPoints</a></li>
+     <li><a href="#roadmap">Roadmap</a></li>
     <li><a href="#contributing">Contributing</a></li>
     <li><a href="#license">License</a></li>
     <li><a href="#contact">Contact</a></li>
@@ -157,11 +159,38 @@ _For more examples, please refer to the [Documentation](https://example.com)_
 
 
 
+<p align="right">(<a href="#top">back to top</a>)</p>
 
+## External API
+
+The Team utilized PEXELS API to populate posts for testing.
+using the free service with 200 requests per hour and 20,000 requests per month for now.
+
+https://www.pexels.com/api/documentation/
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
+## Endpoints
 
+USER
+
+![POST](https://img.shields.io/static/v1.svg?label=register&message=http://localhost:8080/users/&color=blue )
+
+![GET](https://img.shields.io/static/v1.svg?label=register&message=http://localhost:8080/users/{user_id}&color=blue )
+---
+RESTAURANT
+
+![POST](https://img.shields.io/static/v1.svg?label=register&message=http://localhost:8080/restaurant/&color=blue )
+
+![GET](https://img.shields.io/static/v1.svg?label=register&message=http://localhost:8080/restaurant/{restaurant_id}&color=blue )
+---
+Pexels Random Image
+
+![GET](https://img.shields.io/static/v1.svg?label=register&message=http://localhost:8080/pexelsimage/{image_type}&color=blue )
+
+
+
+<p align="right">(<a href="#top">back to top</a>)</p>
 
 <!-- ROADMAP -->
 ## Roadmap
