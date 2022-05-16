@@ -21,7 +21,7 @@ public class PexelsApi {
 			HttpURLConnection conn = (HttpURLConnection) url.openConnection();
 
 			conn.setRequestMethod("GET");// hard coded my api key for now
-			conn.setRequestProperty("Authorization", "563492ad6f91700001000001d34edb5085e84165bdcbb35d053510ca");
+			conn.setRequestProperty("Authorization", );
 			conn.connect();
 
 			// Getting the response code
