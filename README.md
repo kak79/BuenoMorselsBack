@@ -240,6 +240,11 @@ Distributed under the MIT License. See `LICENSE.txt` for more information.
 
 <!-- Project Link: [https://github.com/github_username/repo_name](https://github.com/github_username/repo_name) -->
 
+![Linkedin](https://img.shields.io/badge/LinkedIn-blue?style=for-the-badge&logo=linkedin&logoColor=white)
+
+![Linkedin](https://img.shields.io/badge/LinkedIn-blue?style=for-the-badge&logo=linkedin&logoColor=white?label=LinkedIn&message=http://localhost:8080/users/&color=blue )
+
+
 
  <a href="https://www.linkedin.com/in/chriswwilder/">
     <img src="https://img.shields.io/badge/LinkedIn-blue?style=for-the-badge&logo=linkedin&logoColor=white" alt="LinkedIn Badge"/>
