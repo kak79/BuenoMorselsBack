@@ -4,6 +4,8 @@ import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
+
+import io.github.cdimascio.dotenv.Dotenv;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
@@ -20,8 +22,10 @@ public class PexelsApi {
 
 			HttpURLConnection conn = (HttpURLConnection) url.openConnection();
 
+			Dotenv dotenv = Dotenv.load();
+
 			conn.setRequestMethod("GET");// hard coded my api key for now
-			conn.setRequestProperty("Authorization", );
+			conn.setRequestProperty("Authorization", dotenv.get("MY_ENV_VAR1") );
 			conn.connect();
 
 			// Getting the response code
