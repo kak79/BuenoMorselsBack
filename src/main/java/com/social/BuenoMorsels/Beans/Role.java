@@ -11,23 +11,16 @@ import javax.persistence.Table;
 
 @Entity
 @Table
-public class Restaurant {
+public class Role {
 
 	@Id
-	@Column(name="restaurant_id")
+	@Column(name="follower_id")
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int restaurantId;
-	
+	private int followerId;
 	@Column
-	private String title;
-	
-	
+	private int userId;
 	@Column
-	private String description;
-	
-	@Column(name="post_id")
 	private int postId;
-	
 	
 
 	
