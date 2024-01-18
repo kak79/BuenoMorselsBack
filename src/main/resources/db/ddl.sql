@@ -49,29 +49,9 @@ CREATE TABLE user_role (
 );
 
 CREATE TABLE meal (
-
+	meal_id SERIAL PRIMARY KEY UNIQUE NOT NULL,
 );
 
---CREATE TABLE public.user_comment (
---    id integer NOT NULL,
---    review_id integer,
---    user_id integer,
---    comment_text character varying(50) NOT NULL,
---    sent_at timestamp without time zone NOT NULL
---);
-
-
---CREATE TABLE public.user_rank (
---    id integer NOT NULL,
---    rank_title character varying(50) NOT NULL
---);
-
-
---CREATE TABLE public.movie_rating (
---    rating integer NOT NULL,
---    user_id integer NOT NULL,
---    movie_id integer NOT NULL
---);
 
 
 
