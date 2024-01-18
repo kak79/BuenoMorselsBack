@@ -1,46 +1,35 @@
 package com.social.BuenoMorsels.Beans;
 
+import javax.persistence.*;
 import java.util.Objects;
-
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.Table;
 
 @Entity
 @Table
-public class Image {
+public class UserPic {
 
 	@Id
 	@Column
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int imageId;
-	
+
 	@Column(name="image_url")
 	private String imageURL;
-	@Column
-	private int userId;
+	@OneToOne
+	@JoinColumn(name="user_id")
+	private User user;
 	@Column
 	private String description;
 	@Column
-	private boolean like;
+	private boolean liked;
 	
 	
-	
-	public Image() {
-		super();
-	}
-
-
-	public Image(int imageId, String imageURL, int userId, String description, boolean like) {
+	public UserPic(int imageId, String imageURL, User user, String description, boolean like) {
 		super();
 		this.imageId = imageId;
 		this.imageURL = imageURL;
-		this.userId = userId;
+		this.user = user;
 		this.description = description;
-		this.like = like;
+		this.liked = like;
 	}
 
 
@@ -64,13 +53,13 @@ public class Image {
 	}
 
 
-	public int getUserId() {
-		return userId;
+	public User getUser() {
+		return user;
 	}
 
 
-	public void setUserId(int userId) {
-		this.userId = userId;
+	public void setUser(User user) {
+		this.user = user;
 	}
 
 
@@ -85,18 +74,25 @@ public class Image {
 
 
 	public boolean isLike() {
-		return like;
+		return liked;
 	}
 
 
 	public void setLike(boolean like) {
-		this.like = like;
+		this.liked = like;
+	}
+
+
+	@Override
+	public String toString() {
+		return "UserPic [imageId=" + imageId + ", imageURL=" + imageURL + ", user=" + user + ", description="
+				+ description + ", like=" + liked + "]";
 	}
 
 
 	@Override
 	public int hashCode() {
-		return Objects.hash(description, imageId, imageURL, like, userId);
+		return Objects.hash(description, imageId, imageURL, liked, user);
 	}
 
 
@@ -108,16 +104,9 @@ public class Image {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		Image other = (Image) obj;
+		UserPic other = (UserPic) obj;
 		return Objects.equals(description, other.description) && imageId == other.imageId
-				&& Objects.equals(imageURL, other.imageURL) && like == other.like && userId == other.userId;
-	}
-
-
-	@Override
-	public String toString() {
-		return "Image [imageId=" + imageId + ", imageURL=" + imageURL + ", userId=" + userId + ", description="
-				+ description + ", like=" + like + "]";
+				&& Objects.equals(imageURL, other.imageURL) && liked == other.liked && Objects.equals(user, other.user);
 	}
 	
 	

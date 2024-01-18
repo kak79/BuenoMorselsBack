@@ -12,102 +12,60 @@ import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="post_comment")
-public class Comment {
+@Table(name="user_role")
+public class Role {
 
 	@Id
-	@Column(name="comment_id")
+	@Column(name="follower_id")
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int commentId;
+	private int followerId;
 	@OneToOne
 	@JoinColumn(name="user_id")
 	private User user;
 	@OneToOne
 	@JoinColumn(name="post_id")
 	private Post post;
-	@Column(name="comment_text")
-	private String commentText;
 	
-	
-	
-	public Comment() {
+	public Role(int followerId, User user, Post post) {
 		super();
-	}
-
-
-
-	public Comment(int commentId, User user, Post post, String commentText) {
-		super();
-		this.commentId = commentId;
+		this.followerId = followerId;
 		this.user = user;
 		this.post = post;
-		this.commentText = commentText;
 	}
 
-
-
-	public int getCommentId() {
-		return commentId;
+	public int getFollowerId() {
+		return followerId;
 	}
 
-
-
-	public void setCommentId(int commentId) {
-		this.commentId = commentId;
+	public void setFollowerId(int followerId) {
+		this.followerId = followerId;
 	}
-
-
 
 	public User getUser() {
 		return user;
 	}
 
-
-
 	public void setUser(User user) {
 		this.user = user;
 	}
-
-
 
 	public Post getPost() {
 		return post;
 	}
 
-
-
 	public void setPost(Post post) {
 		this.post = post;
 	}
 
-
-
-	public String getCommentText() {
-		return commentText;
-	}
-
-
-
-	public void setCommentText(String commentText) {
-		this.commentText = commentText;
-	}
-
-
-
 	@Override
 	public String toString() {
-		return "Comment [commentId=" + commentId + ", user=" + user + ", post=" + post + ", commentText=" + commentText
-				+ "]";
+		return "Role [followerId=" + followerId + ", user=" + user + ", post=" + post + "]";
 	}
-
-
 
 	@Override
 	public int hashCode() {
-		return Objects.hash(commentId, commentText, post, user);
+		return Objects.hash(followerId, post, user);
 	}
-
-
 
 	@Override
 	public boolean equals(Object obj) {
@@ -117,13 +75,13 @@ public class Comment {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		Comment other = (Comment) obj;
-		return commentId == other.commentId && Objects.equals(commentText, other.commentText)
-				&& Objects.equals(post, other.post) && Objects.equals(user, other.user);
+		Role other = (Role) obj;
+		return followerId == other.followerId && Objects.equals(post, other.post) && Objects.equals(user, other.user);
 	}
-
-
-
 	
+	
+	
+
+
 	
 }

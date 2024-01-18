@@ -1,14 +1,9 @@
 package com.social.BuenoMorsels.Beans;
 
-import java.time.LocalDateTime;
+//import java.time.LocalDateTime;
 import java.util.Objects;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 @Entity
 @Table
@@ -17,74 +12,133 @@ public class Post {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name="post_id")
-	private int postId;
-	@Column
+	private int mealReviewId;
+	@Column(name="title")
 	private String title;
-	@Column
-	private String description;
-	@Column(name="image_id")
-	private int imageId;
-	@Column
-	private LocalDateTime tdPosted;
-
-	public Post(int postId, String title, String description, int imageId, LocalDateTime tdPosted) {
+	@ManyToOne
+	@JoinColumn(name="user_id")
+	private User user;
+	@OneToOne
+	@JoinColumn(name="meal_id")
+	private Meal meal;
+	@ManyToOne
+	@JoinColumn(name="restaurant_id")
+	private Restaurant restaurant;
+	private String postText;
+	private int postRating;
+	@OneToOne
+	@JoinColumn(name="meal_pic_id")
+	private MealPic mealPic;
+	//private datetime sentAt;
+	
+	
+	public Post(int mealReviewId, String title, User user, Meal meal, Restaurant restaurant, String postText,
+			int postRating, MealPic mealPic) {
 		super();
-		this.postId = postId;
+		this.mealReviewId = mealReviewId;
 		this.title = title;
-		this.description = description;
-		this.imageId = imageId;
-		this.tdPosted = tdPosted;
+		this.user = user;
+		this.meal = meal;
+		this.restaurant = restaurant;
+		this.postText = postText;
+		this.postRating = postRating;
+		this.mealPic = mealPic;
 	}
 
-	public Post() {
-		super();
-		// TODO Auto-generated constructor stub
+
+	public int getMealReviewId() {
+		return mealReviewId;
 	}
 
-	public int getPostId() {
-		return postId;
+
+	public void setMealReviewId(int mealReviewId) {
+		this.mealReviewId = mealReviewId;
 	}
 
-	public void setPostId(int postId) {
-		this.postId = postId;
-	}
 
 	public String getTitle() {
 		return title;
 	}
 
+
 	public void setTitle(String title) {
 		this.title = title;
 	}
 
-	public String getDescription() {
-		return description;
+
+	public User getUser() {
+		return user;
 	}
 
-	public void setDescription(String description) {
-		this.description = description;
+
+	public void setUser(User user) {
+		this.user = user;
 	}
 
-	public int getImageId() {
-		return imageId;
+
+	public Meal getMeal() {
+		return meal;
 	}
 
-	public void setVideoId(int videoId) {
-		this.imageId = videoId;
+
+	public void setMeal(Meal meal) {
+		this.meal = meal;
 	}
 
-	public LocalDateTime getTdPosted() {
-		return tdPosted;
+
+	public Restaurant getRestaurant() {
+		return restaurant;
 	}
 
-	public void setTdPosted(LocalDateTime tdPosted) {
-		this.tdPosted = tdPosted;
+
+	public void setRestaurant(Restaurant restaurant) {
+		this.restaurant = restaurant;
 	}
+
+
+	public String getPostText() {
+		return postText;
+	}
+
+
+	public void setPostText(String postText) {
+		this.postText = postText;
+	}
+
+
+	public int getPostRating() {
+		return postRating;
+	}
+
+
+	public void setPostRating(int postRating) {
+		this.postRating = postRating;
+	}
+
+
+	public MealPic getMealPic() {
+		return mealPic;
+	}
+
+
+	public void setMealPic(MealPic mealPic) {
+		this.mealPic = mealPic;
+	}
+
+
+	@Override
+	public String toString() {
+		return "Post [mealReviewId=" + mealReviewId + ", title=" + title + ", user=" + user + ", meal=" + meal
+				+ ", restaurant=" + restaurant + ", postText=" + postText + ", postRating=" + postRating + ", mealPic="
+				+ mealPic + "]";
+	}
+
 
 	@Override
 	public int hashCode() {
-		return Objects.hash(description, postId, tdPosted, title, imageId);
+		return Objects.hash(meal, mealPic, mealReviewId, postRating, postText, restaurant, title, user);
 	}
+
 
 	@Override
 	public boolean equals(Object obj) {
@@ -95,15 +149,14 @@ public class Post {
 		if (getClass() != obj.getClass())
 			return false;
 		Post other = (Post) obj;
-		return Objects.equals(description, other.description) && postId == other.postId
-				&& Objects.equals(tdPosted, other.tdPosted) && Objects.equals(title, other.title)
-				&& imageId == other.imageId;
+		return Objects.equals(meal, other.meal) && Objects.equals(mealPic, other.mealPic)
+				&& mealReviewId == other.mealReviewId && postRating == other.postRating
+				&& Objects.equals(postText, other.postText) && Objects.equals(restaurant, other.restaurant)
+				&& Objects.equals(title, other.title) && Objects.equals(user, other.user);
 	}
 
-	@Override
-	public String toString() {
-		return "Post [postId=" + postId + ", title=" + title + ", description=" + description + ", imageId=" + imageId
-				+ ", tdPosted=" + tdPosted + "]";
-	}
+	
+	
+
 
 }
