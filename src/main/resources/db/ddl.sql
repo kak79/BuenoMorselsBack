@@ -1,19 +1,17 @@
 
 
+drop table if exists post_likes cascade;
+drop table if exists user_role cascade;
+drop table if exists post_comment cascade;
+drop table if exists post cascade;
+drop table if exists meal_pic cascade;
+drop table if exists user_pic cascade;
+drop table if exists restaurant cascade;
+drop table if exists meal cascade;
+drop table if exists usr cascade;
 
 
 
-CREATE TABLE meal (
-	meal_id SERIAL PRIMARY KEY UNIQUE NOT NULL,
-);
-
-CREATE TABLE restaurant (
-    restaurant_id SERIAL PRIMARY KEY UNIQUE NOT NULL,
-    restaurant_name VARCHAR(50) NOT NULL,
-    description VARCHAR(200) NOT NULL,
-    restaurant_rating VARCHAR(10) NOT NULL,
-    cusine VARCHAR(50) NOT NULL
-);
 
 CREATE TABLE usr (
     user_id SERIAL PRIMARY KEY UNIQUE NOT NULL,
@@ -24,6 +22,18 @@ CREATE TABLE usr (
     email VARCHAR(50) NOT NULL,
     is_active VARCHAR(50) NOT NULL,
     is_not_locked VARCHAR(50) NOT NULL
+);
+
+CREATE TABLE meal (
+	meal_id SERIAL PRIMARY KEY UNIQUE NOT NULL
+);
+
+CREATE TABLE restaurant (
+    restaurant_id SERIAL PRIMARY KEY UNIQUE NOT NULL,
+    restaurant_name VARCHAR(50) NOT NULL,
+    description VARCHAR(200) NOT NULL,
+    restaurant_rating VARCHAR(10) NOT NULL,
+    cusine VARCHAR(50) NOT NULL
 );
 
 CREATE TABLE user_pic ( 
