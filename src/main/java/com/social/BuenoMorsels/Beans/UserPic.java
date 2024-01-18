@@ -14,72 +14,87 @@ public class UserPic {
 
 	@Column(name="image_url")
 	private String imageURL;
-	@Column
-	private int userId;
+	@OneToOne
+	@JoinColumn(name="user_id")
+	private User user;
 	@Column
 	private String description;
 	@Column
-	private boolean like;
+	private boolean liked;
 	
-	public UserPic(int imageId, String imageURL, int userId, String description, boolean like) {
+	
+	public UserPic(int imageId, String imageURL, User user, String description, boolean like) {
 		super();
 		this.imageId = imageId;
 		this.imageURL = imageURL;
-		this.userId = userId;
+		this.user = user;
 		this.description = description;
-		this.like = like;
+		this.liked = like;
 	}
+
 
 	public int getImageId() {
 		return imageId;
 	}
 
+
 	public void setImageId(int imageId) {
 		this.imageId = imageId;
 	}
+
 
 	public String getImageURL() {
 		return imageURL;
 	}
 
+
 	public void setImageURL(String imageURL) {
 		this.imageURL = imageURL;
 	}
 
-	public int getUserId() {
-		return userId;
+
+	public User getUser() {
+		return user;
 	}
 
-	public void setUserId(int userId) {
-		this.userId = userId;
+
+	public void setUser(User user) {
+		this.user = user;
 	}
+
 
 	public String getDescription() {
 		return description;
 	}
 
+
 	public void setDescription(String description) {
 		this.description = description;
 	}
 
+
 	public boolean isLike() {
-		return like;
+		return liked;
 	}
 
+
 	public void setLike(boolean like) {
-		this.like = like;
+		this.liked = like;
 	}
+
 
 	@Override
 	public String toString() {
-		return "UserPic [imageId=" + imageId + ", imageURL=" + imageURL + ", userId=" + userId + ", description="
-				+ description + ", like=" + like + "]";
+		return "UserPic [imageId=" + imageId + ", imageURL=" + imageURL + ", user=" + user + ", description="
+				+ description + ", like=" + liked + "]";
 	}
+
 
 	@Override
 	public int hashCode() {
-		return Objects.hash(description, imageId, imageURL, like, userId);
+		return Objects.hash(description, imageId, imageURL, liked, user);
 	}
+
 
 	@Override
 	public boolean equals(Object obj) {
@@ -91,9 +106,9 @@ public class UserPic {
 			return false;
 		UserPic other = (UserPic) obj;
 		return Objects.equals(description, other.description) && imageId == other.imageId
-				&& Objects.equals(imageURL, other.imageURL) && like == other.like && userId == other.userId;
+				&& Objects.equals(imageURL, other.imageURL) && liked == other.liked && Objects.equals(user, other.user);
 	}
-
-
+	
+	
 	
 }
