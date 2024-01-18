@@ -7,6 +7,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -17,52 +19,53 @@ public class Role {
 	@Column(name="follower_id")
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int followerId;
-	@Column
-	private int userId;
-	@Column
-	private int postId;
+	@OneToOne
+	@JoinColumn(name="user_id")
+	private User user;
+	@OneToOne
+	@JoinColumn(name="post_id")
+	private Post post;
 	
-	
-	
-	public Role(int followerId, int userId, int postId) {
+	public Role(int followerId, User user, Post post) {
 		super();
 		this.followerId = followerId;
-		this.userId = userId;
-		this.postId = postId;
+		this.user = user;
+		this.post = post;
 	}
-	
-	
+
 	public int getFollowerId() {
 		return followerId;
 	}
+
 	public void setFollowerId(int followerId) {
 		this.followerId = followerId;
 	}
-	public int getUserId() {
-		return userId;
-	}
-	public void setUserId(int userId) {
-		this.userId = userId;
-	}
-	public int getPostId() {
-		return postId;
-	}
-	public void setPostId(int postId) {
-		this.postId = postId;
+
+	public User getUser() {
+		return user;
 	}
 
+	public void setUser(User user) {
+		this.user = user;
+	}
+
+	public Post getPost() {
+		return post;
+	}
+
+	public void setPost(Post post) {
+		this.post = post;
+	}
 
 	@Override
 	public String toString() {
-		return "Role [followerId=" + followerId + ", userId=" + userId + ", postId=" + postId + "]";
+		return "Role [followerId=" + followerId + ", user=" + user + ", post=" + post + "]";
 	}
-
 
 	@Override
 	public int hashCode() {
-		return Objects.hash(followerId, postId, userId);
+		return Objects.hash(followerId, post, user);
 	}
-
 
 	@Override
 	public boolean equals(Object obj) {
@@ -73,9 +76,12 @@ public class Role {
 		if (getClass() != obj.getClass())
 			return false;
 		Role other = (Role) obj;
-		return followerId == other.followerId && postId == other.postId && userId == other.userId;
+		return followerId == other.followerId && Objects.equals(post, other.post) && Objects.equals(user, other.user);
 	}
 	
+	
+	
+
 
 	
 }
