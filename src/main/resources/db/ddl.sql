@@ -26,18 +26,12 @@ CREATE TABLE usr (
     is_not_locked VARCHAR(50) NOT NULL
 );
 
-CREATE TABLE user_role ( 
-	follower_id SERIAL PRIMARY KEY UNIQUE NOT NULL,
-	user_id INTEGER NOT NULL REFERENCES usr,
-	post_id INTEGER NOT NULL REFERENCES post,
-);
-
 CREATE TABLE user_pic ( 
 	image_id SERIAL PRIMARY KEY UNIQUE NOT NULL,
 	image_url VARCHAR(500),
 	user_id INTEGER NOT NULL REFERENCES usr,
 	description VARCHAR(500),
-	liked BOOL NOT NULL,
+	liked BOOL NOT NULL
 );
 
 CREATE TABLE meal_pic ( 
@@ -46,7 +40,7 @@ CREATE TABLE meal_pic (
 	user_id INTEGER NOT NULL REFERENCES usr,
 	meal_id INTEGER NOT NULL REFERENCES meal,
 	description VARCHAR(500),
-	liked BOOL NOT NULL,
+	liked BOOL NOT NULL
 );
 
 CREATE TABLE post (
@@ -59,6 +53,19 @@ CREATE TABLE post (
     post_rating INTEGER NOT NULL,
     meal_pic_id INTEGER NOT NULL REFERENCES meal_pic,
     sent_at TIMESTAMP WITHOUT TIME ZONE NOT NULL
+);
+
+CREATE TABLE post_comment ( 
+	comment_id SERIAL PRIMARY KEY UNIQUE NOT NULL,
+	user_id INTEGER NOT NULL REFERENCES usr,
+	post_id INTEGER NOT NULL REFERENCES post,
+	comment_text VARCHAR(500)
+);
+
+CREATE TABLE user_role ( 
+	follower_id SERIAL PRIMARY KEY UNIQUE NOT NULL,
+	user_id INTEGER NOT NULL REFERENCES usr,
+	post_id INTEGER NOT NULL REFERENCES post
 );
 
 CREATE TABLE post_likes (

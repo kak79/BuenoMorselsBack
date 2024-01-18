@@ -7,21 +7,25 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
-@Table
+@Table(name="post_comment")
 public class Comment {
 
 	@Id
-	@Column
+	@Column(name="comment_id")
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int commentId;
-	@Column
-	private int userId;
-	@Column
-	private int postId;
-	@Column
+	@OneToOne
+	@JoinColumn(name="user_id")
+	private User user;
+	@OneToOne
+	@JoinColumn(name="post_id")
+	private Post post;
+	@Column(name="comment_text")
 	private String commentText;
 	
 	
@@ -32,11 +36,11 @@ public class Comment {
 
 
 
-	public Comment(int commentId, int userId, int postId, String commentText) {
+	public Comment(int commentId, User user, Post post, String commentText) {
 		super();
 		this.commentId = commentId;
-		this.userId = userId;
-		this.postId = postId;
+		this.user = user;
+		this.post = post;
 		this.commentText = commentText;
 	}
 
@@ -54,26 +58,26 @@ public class Comment {
 
 
 
-	public int getUserId() {
-		return userId;
+	public User getUser() {
+		return user;
 	}
 
 
 
-	public void setUserId(int userId) {
-		this.userId = userId;
+	public void setUser(User user) {
+		this.user = user;
 	}
 
 
 
-	public int getPostId() {
-		return postId;
+	public Post getPost() {
+		return post;
 	}
 
 
 
-	public void setPostId(int postId) {
-		this.postId = postId;
+	public void setPost(Post post) {
+		this.post = post;
 	}
 
 
@@ -91,8 +95,16 @@ public class Comment {
 
 
 	@Override
+	public String toString() {
+		return "Comment [commentId=" + commentId + ", user=" + user + ", post=" + post + ", commentText=" + commentText
+				+ "]";
+	}
+
+
+
+	@Override
 	public int hashCode() {
-		return Objects.hash(commentId, commentText, postId, userId);
+		return Objects.hash(commentId, commentText, post, user);
 	}
 
 
@@ -106,18 +118,12 @@ public class Comment {
 		if (getClass() != obj.getClass())
 			return false;
 		Comment other = (Comment) obj;
-		return commentId == other.commentId && Objects.equals(commentText, other.commentText) && postId == other.postId
-				&& userId == other.userId;
+		return commentId == other.commentId && Objects.equals(commentText, other.commentText)
+				&& Objects.equals(post, other.post) && Objects.equals(user, other.user);
 	}
 
 
 
-	@Override
-	public String toString() {
-		return "Comment [commentId=" + commentId + ", userId=" + userId + ", postId=" + postId + ", commentText="
-				+ commentText + "]";
-	}
-	
 	
 	
 }
