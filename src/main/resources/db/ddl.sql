@@ -22,11 +22,8 @@ CREATE TABLE usr (
     username VARCHAR(50) NOT NULL,
     passwd VARCHAR(50) NOT NULL,
     email VARCHAR(50) NOT NULL,
-    role_id INTEGER NOT NULL REFERENCES user_role,
     is_active VARCHAR(50) NOT NULL,
-    is_not_locked VARCHAR(50) NOT NULL,
-    user_pic_id INTEGER NOT NULL REFERENCES user_pic,
-    meal_id INTEGER NOT NULL REFERENCES meal
+    is_not_locked VARCHAR(50) NOT NULL
 );
 
 CREATE TABLE user_role ( 
