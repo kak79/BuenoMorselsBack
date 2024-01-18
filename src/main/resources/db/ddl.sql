@@ -43,6 +43,15 @@ CREATE TABLE user_pic (
 	liked BOOL NOT NULL,
 );
 
+CREATE TABLE meal_pic ( 
+	meal_image_id SERIAL PRIMARY KEY UNIQUE NOT NULL,
+	meal_image_url VARCHAR(500),
+	user_id INTEGER NOT NULL REFERENCES usr,
+	meal_id INTEGER NOT NULL REFERENCES meal,
+	description VARCHAR(500),
+	liked BOOL NOT NULL,
+);
+
 CREATE TABLE post (
     post_id SERIAL PRIMARY KEY UNIQUE NOT NULL,
     title VARCHAR(50),    

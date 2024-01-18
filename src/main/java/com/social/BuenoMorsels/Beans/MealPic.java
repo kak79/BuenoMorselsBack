@@ -7,6 +7,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -14,89 +16,100 @@ import javax.persistence.Table;
 public class MealPic {
 
 	@Id
-	@Column
+	@Column(name="meal_image_id")
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int imageId;
+	private int mealImageId;
 	
-	@Column(name="image_url")
+	@Column(name="meal_image_url")
 	private String imageURL;
-	@Column
-	private int userId;
+	@OneToOne
+	@JoinColumn(name="user_id")
+	private User user;
+	@OneToOne
+	@JoinColumn(name="meal_id")
+	private Meal meal;
 	@Column
 	private String description;
 	@Column
-	private boolean like;
+	private boolean liked;
 	
-	
-	public MealPic(int imageId, String imageURL, int userId, String description, boolean like) {
+
+	public MealPic(int mealImageId, String imageURL, User user, Meal meal, String description, boolean liked) {
 		super();
-		this.imageId = imageId;
+		this.mealImageId = mealImageId;
 		this.imageURL = imageURL;
-		this.userId = userId;
+		this.user = user;
+		this.meal = meal;
 		this.description = description;
-		this.like = like;
+		this.liked = liked;
 	}
 	
-	
-	public int getImageId() {
-		return imageId;
+	public int getMealImageId() {
+		return mealImageId;
 	}
-	public void setImageId(int imageId) {
-		this.imageId = imageId;
+
+
+	public void setMealImageId(int mealImageId) {
+		this.mealImageId = mealImageId;
 	}
+
+
 	public String getImageURL() {
 		return imageURL;
 	}
+
+
 	public void setImageURL(String imageURL) {
 		this.imageURL = imageURL;
 	}
-	public int getUserId() {
-		return userId;
+
+
+	public User getUser() {
+		return user;
 	}
-	public void setUserId(int userId) {
-		this.userId = userId;
+
+
+	public void setUser(User user) {
+		this.user = user;
 	}
+
+
+	public Meal getMeal() {
+		return meal;
+	}
+
+
+	public void setMeal(Meal meal) {
+		this.meal = meal;
+	}
+
+
 	public String getDescription() {
 		return description;
 	}
+
+
 	public void setDescription(String description) {
 		this.description = description;
 	}
-	public boolean isLike() {
-		return like;
-	}
-	public void setLike(boolean like) {
-		this.like = like;
+
+
+	public boolean isLiked() {
+		return liked;
 	}
 
+
+	public void setLiked(boolean liked) {
+		this.liked = liked;
+	}
 
 	@Override
 	public String toString() {
-		return "MealPic [imageId=" + imageId + ", imageURL=" + imageURL + ", userId=" + userId + ", description="
-				+ description + ", like=" + like + "]";
+		return "MealPic [mealImageId=" + mealImageId + ", imageURL=" + imageURL + ", user=" + user + ", meal=" + meal
+				+ ", description=" + description + ", liked=" + liked + "]";
 	}
 
 
-	@Override
-	public int hashCode() {
-		return Objects.hash(description, imageId, imageURL, like, userId);
-	}
-
-
-	@Override
-	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		MealPic other = (MealPic) obj;
-		return Objects.equals(description, other.description) && imageId == other.imageId
-				&& Objects.equals(imageURL, other.imageURL) && like == other.like && userId == other.userId;
-	}
 	
-	
-
 	
 }
