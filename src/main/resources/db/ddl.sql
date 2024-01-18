@@ -42,8 +42,10 @@ CREATE TABLE post_likes (
     post_id INTEGER NOT NULL REFERENCES post
 );
 
-CREATE TABLE rol (  --role?
-
+CREATE TABLE user_role ( 
+	follower_id SERIAL PRIMARY KEY UNIQUE NOT NULL,
+	user_id INTEGER NOT NULL REFERENCES usr,
+	post_id INTEGER NOT NULL REFERENCES post,
 );
 
 CREATE TABLE meal (
