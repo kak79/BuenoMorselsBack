@@ -31,18 +31,18 @@ values
 ('Block-Hirthe', 'Nulla mollis molestie lorem. Quisque ut erat.', 5, 'Italian');
 
 insert into user_pic 
-(image_url, user_id, description, liked) 
+(image_url, user_id, description) 
 values 
-('https://robohash.org/fugaquiaet.png?size=50x50&set=set1', 1, 'Praesent blandit lacinia erat.', true),
-('https://robohash.org/auttemporibusut.png?size=50x50&set=set1', 2, 'Aliquam augue quam, rutrum at, lorem.', false),
-('https://robohash.org/eosteneturvoluptas.png?size=50x50&set=set1', 3, 'Phasellus sit amet erat.', false),
-('https://robohash.org/doloresdolorest.png?size=50x50&set=set1', 4, 'Integer ac neque.', false),
-('https://robohash.org/quosetvoluptatem.png?size=50x50&set=set1', 5, 'Nullam orci pede, venenatis non.', false),
-('https://robohash.org/corruptianiminon.png?size=50x50&set=set1', 6, 'In tempor.', true),
-('https://robohash.org/quitemporehic.png?size=50x50&set=set1', 7, 'Integer aliquet, massa id lobortis convallis.', true),
-('https://robohash.org/nesciuntmolestiaetempore.png?size=50x50&set=set1', 8, 'Pellentesque viverra pede ac diam.', false),
-('https://robohash.org/essefacilisducimus.png?size=50x50&set=set1', 9, 'Donec posuere metus vitae ipsum.', true),
-('https://robohash.org/quiaplaceatsint.png?size=50x50&set=set1', 10, 'Pellentesque ultrices mattis odio.', false);
+('https://robohash.org/fugaquiaet.png?size=50x50&set=set1', 1, 'Praesent blandit lacinia erat.'),
+('https://robohash.org/auttemporibusut.png?size=50x50&set=set1', 2, 'Aliquam augue quam, rutrum at, lorem.'),
+('https://robohash.org/eosteneturvoluptas.png?size=50x50&set=set1', 3, 'Phasellus sit amet erat.'),
+('https://robohash.org/doloresdolorest.png?size=50x50&set=set1', 4, 'Integer ac neque.'),
+('https://robohash.org/quosetvoluptatem.png?size=50x50&set=set1', 5, 'Nullam orci pede, venenatis non.'),
+('https://robohash.org/corruptianiminon.png?size=50x50&set=set1', 6, 'In tempor.'),
+('https://robohash.org/quitemporehic.png?size=50x50&set=set1', 7, 'Integer aliquet, massa id lobortis convallis.'),
+('https://robohash.org/nesciuntmolestiaetempore.png?size=50x50&set=set1', 8, 'Pellentesque viverra pede ac diam.'),
+('https://robohash.org/essefacilisducimus.png?size=50x50&set=set1', 9, 'Donec posuere metus vitae ipsum.'),
+('https://robohash.org/quiaplaceatsint.png?size=50x50&set=set1', 10, 'Pellentesque ultrices mattis odio.');
 
 insert into meal_pic 
 (image_url, user_id, meal_id, description, liked) 

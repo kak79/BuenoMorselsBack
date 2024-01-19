@@ -19,8 +19,7 @@ public class UserPic {
 	private User user;
 	@Column
 	private String description;
-	@Column
-	private boolean liked;
+
 	
 	
 	public UserPic(int imageId, String imageURL, User user, String description, boolean like) {
@@ -29,7 +28,6 @@ public class UserPic {
 		this.imageURL = imageURL;
 		this.user = user;
 		this.description = description;
-		this.liked = like;
 	}
 
 
@@ -73,26 +71,19 @@ public class UserPic {
 	}
 
 
-	public boolean isLike() {
-		return liked;
-	}
 
-
-	public void setLike(boolean like) {
-		this.liked = like;
-	}
 
 
 	@Override
 	public String toString() {
 		return "UserPic [imageId=" + imageId + ", imageURL=" + imageURL + ", user=" + user + ", description="
-				+ description + ", like=" + liked + "]";
+				+ description + "]";
 	}
 
 
 	@Override
 	public int hashCode() {
-		return Objects.hash(description, imageId, imageURL, liked, user);
+		return Objects.hash(description, imageId, imageURL,  user);
 	}
 
 
@@ -106,7 +97,7 @@ public class UserPic {
 			return false;
 		UserPic other = (UserPic) obj;
 		return Objects.equals(description, other.description) && imageId == other.imageId
-				&& Objects.equals(imageURL, other.imageURL) && liked == other.liked && Objects.equals(user, other.user);
+				&& Objects.equals(imageURL, other.imageURL) && Objects.equals(user, other.user);
 	}
 	
 	
