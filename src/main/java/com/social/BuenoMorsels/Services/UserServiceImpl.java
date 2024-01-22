@@ -26,11 +26,11 @@ public class UserServiceImpl implements UserService {
 	public User login(String username, String password) throws UserNotFoundException, InvalidLoginException {
 		User userFromDatabase = userRepo.findByUsername(username);
 		if (userFromDatabase != null && userFromDatabase.getPassword().equals(password)) {
-			return userFromDatabase ; {
-		else if (userFromDatabase == null) { throw new UserNotFoundException();
-			}
-		else { throw new InvalidLoginException();}
+			return userFromDatabase ; 
+		}else if (userFromDatabase == null) { throw new UserNotFoundException();
+		}else { throw new InvalidLoginException();
 		}
+		
 		
 		
 	}
