@@ -5,14 +5,11 @@ import javax.persistence.Table;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
-import com.social.BuenoMorsels.Beans.User;
+import com.social.BuenoMorsels.Beans.Restaurant;
 
 @Repository
-@Table(name="usr")
-public interface UserRepository extends JpaRepository<User, Integer>{
-
-	public User findById(int userId);
-
+@Table(name="restaurant")
+public interface RestaurantRepo extends JpaRepository<Restaurant, Integer>{
+	
+	public Restaurant findById(int RestaurantId);
 }
-
-
