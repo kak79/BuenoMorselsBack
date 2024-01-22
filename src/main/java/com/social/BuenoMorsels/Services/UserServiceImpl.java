@@ -1,6 +1,5 @@
 package com.social.BuenoMorsels.Services;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
@@ -10,23 +9,30 @@ import com.social.BuenoMorsels.Beans.User;
 import com.social.BuenoMorsels.Exceptions.InvalidLoginException;
 import com.social.BuenoMorsels.Exceptions.UserNotFoundException;
 import com.social.BuenoMorsels.Exceptions.UsernameAlreadyExists;
-import com.social.BuenoMorsels.Repository.UserRepository;
+import com.social.BuenoMorsels.Repository.UserRepo;
+
 
 @Service
 @Transactional
 public class UserServiceImpl implements UserService {
 
-	private UserRepository userRepo;
+	private UserRepo userRepo;
 
-	@Autowired
-	public UserServiceImpl(UserRepository userRepo) {
+	public UserServiceImpl(UserRepo userRepo) {
 		this.userRepo = userRepo;
 	}
 
 	@Override
 	public User login(String username, String password) throws UserNotFoundException, InvalidLoginException {
-		// TODO Auto-generated method stub
-		return null;
+		User userFromDatabase = userRepo.findByUsername(username);
+		if (userFromDatabase != null && userFromDatabase.getPassword().equals(password)) {
+			return userFromDatabase ; {
+		else if (userFromDatabase == null) { throw new UserNotFoundException();
+			}
+		else { throw new InvalidLoginException();}
+		}
+		
+		
 	}
 
 	@Override
