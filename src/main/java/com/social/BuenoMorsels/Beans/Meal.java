@@ -12,10 +12,17 @@ public class Meal {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name="meal_id")
     private int mealId;
+    @Column(name="meal_name")
+    private String mealName;
+    
+	public Meal() {
+		super();
+	}
 
-	public Meal(int mealId) {
+	public Meal(int mealId, String mealName) {
 		super();
 		this.mealId = mealId;
+		this.mealName = mealName;
 	}
 
 	public int getMealId() {
@@ -26,14 +33,22 @@ public class Meal {
 		this.mealId = mealId;
 	}
 
+	public String getMealName() {
+		return mealName;
+	}
+
+	public void setMealName(String mealName) {
+		this.mealName = mealName;
+	}
+
 	@Override
 	public String toString() {
-		return "Meal [mealId=" + mealId + "]";
+		return "Meal [mealId=" + mealId + ", mealName=" + mealName + "]";
 	}
 
 	@Override
 	public int hashCode() {
-		return Objects.hash(mealId);
+		return Objects.hash(mealId, mealName);
 	}
 
 	@Override
@@ -45,12 +60,8 @@ public class Meal {
 		if (getClass() != obj.getClass())
 			return false;
 		Meal other = (Meal) obj;
-		return mealId == other.mealId;
+		return mealId == other.mealId && Objects.equals(mealName, other.mealName);
 	}
 
-
-	
-	
-	
 
 }

@@ -25,7 +25,8 @@ CREATE TABLE usr (
 );
 
 CREATE TABLE meal (
-	meal_id SERIAL PRIMARY KEY UNIQUE NOT NULL
+	meal_id SERIAL PRIMARY KEY UNIQUE NOT NULL,
+    meal_name VARCHAR(50) NOT NULL
 );
 
 CREATE TABLE restaurant (
@@ -40,8 +41,7 @@ CREATE TABLE user_pic (
 	image_id SERIAL PRIMARY KEY UNIQUE NOT NULL,
 	image_url VARCHAR(500),
 	user_id INTEGER NOT NULL REFERENCES usr,
-	description VARCHAR(500),
-	liked BOOL NOT NULL
+	description VARCHAR(500)
 );
 
 CREATE TABLE meal_pic ( 
