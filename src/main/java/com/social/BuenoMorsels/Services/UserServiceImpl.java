@@ -37,7 +37,7 @@ public class UserServiceImpl implements UserService {
 
 	@Override
 	@Transactional(propagation = Propagation.SUPPORTS)
-	public User register(User newUser) throws UsernameAlreadyExists {//
+	public User register(User newUser) throws UsernameAlreadyExists {
 		try {
 			newUser = ((CrudRepository<User, Integer>) userRepo).save(newUser);
 			return newUser;
@@ -49,8 +49,12 @@ public class UserServiceImpl implements UserService {
 
 	@Override
 	@Transactional
-	public User getUserById(int userId) throws UserNotFoundException {/// working
-		return userRepo.findById(userId);
+	public User getUserById(int userId) throws UserNotFoundException {
+		//try {
+		//	 = userRepo.findById(userId);
+		//}
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 	@Override
