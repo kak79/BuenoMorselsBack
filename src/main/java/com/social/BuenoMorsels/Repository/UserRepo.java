@@ -11,11 +11,11 @@ import com.social.BuenoMorsels.Beans.User;
 @Table(name="usr")
 public interface UserRepo extends JpaRepository<User, Integer>{
 
-	public User findById(int userId);
+	 User findById(int userId);
 
-	public User findByUsername(String username);
+	 User findByUsername(String username);
 
-	public User findByEmail(String email);
+	 User findByEmail(String email);
 
 }
 

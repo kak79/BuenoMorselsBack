@@ -23,6 +23,7 @@ public class UserServiceImpl implements UserService {
 	}
 
 	@Override
+	@Transactional
 	public User login(String username, String password) throws UserNotFoundException, InvalidLoginException {
 		User userFromDatabase = userRepo.findByUsername(username);
 		if (userFromDatabase != null && userFromDatabase.getPassword().equals(password)) {
@@ -61,6 +62,7 @@ public class UserServiceImpl implements UserService {
 	}
 
 	@Override
+	@Transactional
 	public User getUserByEmail(String email) throws UserNotFoundException {
 
 		try {
@@ -73,6 +75,7 @@ public class UserServiceImpl implements UserService {
 	}
 
 	@Override
+	@Transactional
 	public User getUserByUsername(String username) throws UserNotFoundException {
 
 		try {

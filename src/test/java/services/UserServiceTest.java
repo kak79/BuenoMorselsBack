@@ -1,6 +1,6 @@
 package services;
 
-import static org.junit.Assert.assertThrows;
+import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.when;
 
 import java.util.HashSet;
@@ -57,8 +57,23 @@ public class UserServiceTest {
 		
 	}
 	
-	
-	
+//	@Test
+//	public void loginSuccessfully() throws UserNotFoundException, InvalidLoginException {
+//		String username = "qwert";
+//		String password = "pass";
+//		
+//		User mockUser = new User();
+//		mockUser.setUsername(username);
+//		mockUser.setPassword(password);
+//		
+//		when(userRepo.findByUsername(username)).thenReturn(mockUser);
+//		
+//		User realUser = userServ.login(username, password);
+//		
+//		assertEquals(mockUser, realUser);
+//		
+//	}
+//	
 	
 	
 	
