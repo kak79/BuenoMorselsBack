@@ -26,6 +26,13 @@ public class User {
 	private boolean isNotLocked;
 	
 	
+	
+	
+	public User() {
+		super();
+	}
+
+
 	public User(int userId, String firstName, String lastName, String username, String password, String email,
 			boolean isActive, boolean isNotLocked) {
 		super();
