@@ -50,23 +50,38 @@ public class UserServiceImpl implements UserService {
 	@Override
 	@Transactional
 	public User getUserById(int userId) throws UserNotFoundException {
-		//try {
-		//	 = userRepo.findById(userId);
-		//}
-		// TODO Auto-generated method stub
-		return null;
+	
+		try {
+			User userFromDatabase = userRepo.findById(userId);
+			return userFromDatabase;
+		} catch (Exception e) {
+			throw new UserNotFoundException();
+		}
+		
 	}
 
 	@Override
 	public User getUserByEmail(String email) throws UserNotFoundException {
-		// TODO Auto-generated method stub
-		return null;
+
+		try {
+			User userFromDatabase = userRepo.findByEmail(email);
+			return userFromDatabase;
+		} catch (Exception e) {
+			throw new UserNotFoundException();
+		}
+		
 	}
 
 	@Override
 	public User getUserByUsername(String username) throws UserNotFoundException {
-		// TODO Auto-generated method stub
-		return null;
+
+		try {
+			User userFromDatabase = userRepo.findByUsername(username);
+			return userFromDatabase;
+		} catch (Exception e) {
+			throw new UserNotFoundException();
+		}
+		
 	}
 
 	@Override
