@@ -1,5 +1,6 @@
 package services;
 
+import java.util.HashSet;
 import java.util.Set;
 
 import org.junit.jupiter.api.BeforeAll;
@@ -25,6 +26,13 @@ public class UserServiceTest {
 	
 	@BeforeAll
 	public static void mockUsersSetup() {
+		mockUsers = new HashSet<>();
+		
+		for (int i=1; i<=7; i++) {
+			User user = new User();
+			user.setUserId(i);
+			mockUsers.add(user);
+		}
 		
 	}
 	
