@@ -44,7 +44,7 @@ public class UserServiceTest {
 	
 	
 	@Test
-	public void userNotFound() throws UserNotFoundException, InvalidLoginException {
+	public void usernameNotFound() throws UserNotFoundException, InvalidLoginException {
 		String username = "qwert";
 		String password = "pass";
 		
@@ -56,6 +56,10 @@ public class UserServiceTest {
 		
 		
 	}
+	
+	
+	
+	
 	
 	@Test
 	public void loginSuccessfully() throws UserNotFoundException, InvalidLoginException {
@@ -92,9 +96,38 @@ public class UserServiceTest {
 	}
 	
 	
+	@Test
+	public void userIdNotFound() throws UserNotFoundException {
+		int userId = 1;
+
+		when(userRepo.findById(userId)).thenReturn(null);
+
+		assertThrows(UserNotFoundException.class, () -> {
+			userServ.getUserById(userId);
+		});
+
+	}
 	
-	
-	
+	@Test
+	public void userIdFound() throws UserNotFoundException {
+		int userId = 1;
+
+		User mockUser = new User();
+		mockUser.setUserId(userId);
+
+		when(userRepo.findById(userId)).thenReturn(mockUser);
+
+		User realUser = userServ.getUserById(userId);
+
+		assertEquals(mockUser, realUser);
+
+	}
+
+//	@Test
+//    public void userEmailNotFound() throws UserNotFoundException {
+//        String email = "email";
+//
+//        when(userRepo.findByEmail(email)).thenReturn(null);
 	
 	
 }
