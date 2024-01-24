@@ -27,7 +27,7 @@ public class UserServiceImpl implements UserService {
 	public User login(String username, String password) throws UserNotFoundException, InvalidLoginException {
 		User userFromDatabase = userRepo.findByUsername(username);
 		if (userFromDatabase != null && userFromDatabase.getPassword().equals(password)) {
-			System.out.println("User logged in successfully.");
+			System.out.println(userFromDatabase.getUsername());
 			return userFromDatabase ;
 		}else if (userFromDatabase == null) { throw new UserNotFoundException();
 		}else { throw new InvalidLoginException();
@@ -42,7 +42,7 @@ public class UserServiceImpl implements UserService {
 	public User register(User newUser) throws UsernameAlreadyExists {
 		try {
 			newUser = ((CrudRepository<User, Integer>) userRepo).save(newUser);
-			System.out.println("User registered successfully.");
+			System.out.println(newUser.getUsername());
 			return newUser;
 		} catch (Exception e) {
 			throw new UsernameAlreadyExists();
@@ -51,12 +51,11 @@ public class UserServiceImpl implements UserService {
 	}
 
 	@Override
-	@Transactional
 	public User getUserById(int userId) throws UserNotFoundException {
 	
 		try {
 			User userFromDatabase = userRepo.findById(userId);
-			System.out.println("User found successfully.");
+			System.out.println(userFromDatabase.getUserId());
 			return userFromDatabase;
 		} catch (Exception e) {
 			throw new UserNotFoundException();
@@ -65,12 +64,11 @@ public class UserServiceImpl implements UserService {
 	}
 
 	@Override
-	@Transactional
 	public User getUserByEmail(String email) throws UserNotFoundException {
 
 		try {
 			User userFromDatabase = userRepo.findByEmail(email);
-			System.out.println("User found successfully.");
+			System.out.println(userFromDatabase.getEmail());
 			return userFromDatabase;
 		} catch (Exception e) {
 			throw new UserNotFoundException();
@@ -79,12 +77,11 @@ public class UserServiceImpl implements UserService {
 	}
 
 	@Override
-	@Transactional
 	public User getUserByUsername(String username) throws UserNotFoundException {
 
 		try {
 			User userFromDatabase = userRepo.findByUsername(username);
-			System.out.println("User found successfully.");
+			System.out.println(userFromDatabase.getUsername());
 			return userFromDatabase;
 		} catch (Exception e) {
 			throw new UserNotFoundException();
