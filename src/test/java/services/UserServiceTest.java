@@ -189,11 +189,9 @@ public class UserServiceTest {
 	@Test
 	public void loginUnsuccessfully() throws UserNotFoundException, InvalidLoginException {
 		String username = "qwert";
-		String password = "pass";
 
 		User mockUser = new User();
 		mockUser.setUsername(username);
-		mockUser.setPassword(password);
 
 		when(userRepo.findByUsername(username)).thenReturn(mockUser);
 
@@ -206,11 +204,9 @@ public class UserServiceTest {
 	@Test
 	public void updateUserSuccessfully() throws UserNotFoundException {
 		String username = "qwert";
-		String password = "pass";
 
 		User mockUser = new User();
 		mockUser.setUsername(username);
-		mockUser.setPassword(password);
 
 		when(userRepo.findByUsername(username)).thenReturn(mockUser);
 		when(userRepo.save(mockUser)).thenReturn(mockUser);
@@ -225,11 +221,9 @@ public class UserServiceTest {
 	@Test
 	public void updateUserUnsuccessfully() throws UserNotFoundException {
 		String username = "qwert";
-		String password = "pass";
 
 		User mockUser = new User();
 		mockUser.setUsername(username);
-		mockUser.setPassword(password);
 
 		when(userRepo.findByUsername(username)).thenReturn(null);
 
@@ -242,11 +236,9 @@ public class UserServiceTest {
 	@Test
 	public void deleteUserSuccessfully() throws UserNotFoundException {
 		String username = "qwert";
-		String password = "pass";
 
 		User mockUser = new User();
 		mockUser.setUsername(username);
-		mockUser.setPassword(password);
 
 		when(userRepo.findByUsername(username)).thenReturn(mockUser);
 		when(userRepo.save(mockUser)).thenReturn(mockUser);
@@ -260,11 +252,9 @@ public class UserServiceTest {
 	@Test
 	public void deleteUserUnsuccessfully() throws UserNotFoundException {
 		String username = "qwert";
-		String password = "pass";
 
 		User mockUser = new User();
 		mockUser.setUsername(username);
-		mockUser.setPassword(password);
 
 		when(userRepo.findByUsername(username)).thenReturn(null);
 
