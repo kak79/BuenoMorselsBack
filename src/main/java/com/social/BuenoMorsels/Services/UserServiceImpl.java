@@ -27,7 +27,8 @@ public class UserServiceImpl implements UserService {
 	public User login(String username, String password) throws UserNotFoundException, InvalidLoginException {
 		User userFromDatabase = userRepo.findByUsername(username);
 		if (userFromDatabase != null && userFromDatabase.getPassword().equals(password)) {
-			return userFromDatabase ; 
+			System.out.println("User logged in successfully.");
+			return userFromDatabase ;
 		}else if (userFromDatabase == null) { throw new UserNotFoundException();
 		}else { throw new InvalidLoginException();
 		}
@@ -41,6 +42,7 @@ public class UserServiceImpl implements UserService {
 	public User register(User newUser) throws UsernameAlreadyExists {
 		try {
 			newUser = ((CrudRepository<User, Integer>) userRepo).save(newUser);
+			System.out.println("User registered successfully.");
 			return newUser;
 		} catch (Exception e) {
 			throw new UsernameAlreadyExists();
@@ -54,6 +56,7 @@ public class UserServiceImpl implements UserService {
 	
 		try {
 			User userFromDatabase = userRepo.findById(userId);
+			System.out.println("User found successfully.");
 			return userFromDatabase;
 		} catch (Exception e) {
 			throw new UserNotFoundException();
@@ -67,6 +70,7 @@ public class UserServiceImpl implements UserService {
 
 		try {
 			User userFromDatabase = userRepo.findByEmail(email);
+			System.out.println("User found successfully.");
 			return userFromDatabase;
 		} catch (Exception e) {
 			throw new UserNotFoundException();
@@ -80,6 +84,7 @@ public class UserServiceImpl implements UserService {
 
 		try {
 			User userFromDatabase = userRepo.findByUsername(username);
+			System.out.println("User found successfully.");
 			return userFromDatabase;
 		} catch (Exception e) {
 			throw new UserNotFoundException();
