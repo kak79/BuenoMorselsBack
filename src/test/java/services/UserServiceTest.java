@@ -43,19 +43,10 @@ public class UserServiceTest {
 	}
 	
 	
-	@Test
-	public void usernameNotFound() throws UserNotFoundException, InvalidLoginException {
-		String username = "qwert";
-		String password = "pass";
-		
-		when(userRepo.findByUsername(username)).thenReturn(null);
-		
-		assertThrows(UserNotFoundException.class, () -> { 
-			userServ.login(username, password);
-		});
+
 		
 		
-	}
+
 	
 	@Test
 	public void userIdNotFound() throws UserNotFoundException {
@@ -70,6 +61,21 @@ public class UserServiceTest {
 	}
 	
 	@Test
+	public void userIdFound() throws UserNotFoundException {
+		int userId = 1;
+
+		User mockUser = new User();
+		mockUser.setUserId(userId);
+
+		when(userRepo.findById(userId)).thenReturn(mockUser);
+
+		User realUser = userServ.getUserById(userId);
+
+		assertEquals(mockUser, realUser);
+
+	}
+	
+	@Test
     public void userEmailNotFound() throws UserNotFoundException {
         String email = "email";
 
@@ -80,6 +86,17 @@ public class UserServiceTest {
         });
 	}
 
+	@Test
+	public void usernameNotFoundDuringLogin() throws UserNotFoundException, InvalidLoginException {
+		String username = "qwert";
+		String password = "pass";
+		
+		when(userRepo.findByUsername(username)).thenReturn(null);
+		
+		assertThrows(UserNotFoundException.class, () -> { 
+			userServ.login(username, password);
+		});
+	}
 	
 	@Test
 	public void loginSuccessfully() throws UserNotFoundException, InvalidLoginException {
@@ -118,20 +135,7 @@ public class UserServiceTest {
 	
 	
 	
-	@Test
-	public void userIdFound() throws UserNotFoundException {
-		int userId = 1;
 
-		User mockUser = new User();
-		mockUser.setUserId(userId);
-
-		when(userRepo.findById(userId)).thenReturn(mockUser);
-
-		User realUser = userServ.getUserById(userId);
-
-		assertEquals(mockUser, realUser);
-
-	}
 
 
 	
