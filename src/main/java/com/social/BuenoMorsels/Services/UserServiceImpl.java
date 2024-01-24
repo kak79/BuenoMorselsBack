@@ -91,14 +91,24 @@ public class UserServiceImpl implements UserService {
 
 	@Override
 	public User update(User user) throws UserNotFoundException {
-		// TODO Auto-generated method stub
-		return null;
+		try {
+			user = ((CrudRepository<User, Integer>) userRepo).save(user);
+			System.out.println(user.getUsername());
+			return user;
+		} catch (Exception e) {
+			throw new UserNotFoundException();
+		}
 	}
 
 	@Override
 	public User deleteUser(User user) throws UserNotFoundException {
-		// TODO Auto-generated method stub
-		return null;
+		try {
+			((CrudRepository<User, Integer>) userRepo).delete(user);
+			System.out.println(user.getUsername());
+			return user;
+		} catch (Exception e) {
+			throw new UserNotFoundException();
+		}
 	}
 
 }
