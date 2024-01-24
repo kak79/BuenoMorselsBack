@@ -16,6 +16,7 @@ import com.social.BuenoMorsels.BuenoMorselsApplication;
 import com.social.BuenoMorsels.Beans.User;
 import com.social.BuenoMorsels.Exceptions.InvalidLoginException;
 import com.social.BuenoMorsels.Exceptions.UserNotFoundException;
+import com.social.BuenoMorsels.Exceptions.UsernameAlreadyExists;
 import com.social.BuenoMorsels.Repository.UserRepo;
 import com.social.BuenoMorsels.Services.UserService;
 
@@ -43,8 +44,33 @@ public class UserServiceTest {
 	}
 	
 	
-
+	
+	@Test
+	public void userNameNotFound() throws UserNotFoundException {
+		String username = "qwert";
 		
+		when(userRepo.findByUsername(username)).thenReturn(null);
+		
+		assertThrows(UserNotFoundException.class, () -> { 
+			userServ.getUserByUsername(username);
+		});
+
+	}
+
+	@Test
+	public void userNameFound() throws UserNotFoundException {
+		String username = "qwert";
+		
+		User mockUser = new User();
+		mockUser.setUsername(username);
+
+		when(userRepo.findByUsername(username)).thenReturn(mockUser);
+		
+		User realUser = userServ.getUserByUsername(username);
+		
+		assertEquals(mockUser, realUser);
+
+	}	
 		
 
 	
@@ -85,7 +111,52 @@ public class UserServiceTest {
             userServ.getUserByEmail(email);
         });
 	}
+	
+	@Test
+	public void userEmailFound() throws UserNotFoundException {
+		String email = "email";
 
+		User mockUser = new User();
+		mockUser.setEmail(email);
+
+		when(userRepo.findByEmail(email)).thenReturn(mockUser);
+
+		User realUser = userServ.getUserByEmail(email);
+
+		assertEquals(mockUser, realUser);
+	}
+
+	@Test
+	public void registerNewUserSuccessfully() throws UsernameAlreadyExists {
+		String username = "qwert";
+
+		User mockUser = new User();
+		mockUser.setUsername(username);
+
+		when(userRepo.findByUsername(username)).thenReturn(null);
+		when(userRepo.save(mockUser)).thenReturn(mockUser);
+
+		User realUser = userServ.register(mockUser);
+
+		assertEquals(mockUser, realUser);
+
+	}
+	
+	@Test
+	public void registerUsernameAlreadyExists() throws UsernameAlreadyExists {
+		String username = "qwert";
+
+		User mockUser = new User();
+		mockUser.setUsername(username);
+
+		when(userRepo.findByUsername(username)).thenReturn(mockUser);
+
+		assertThrows(UsernameAlreadyExists.class, () -> {
+			userServ.register(mockUser);
+		});
+
+	}
+	
 	@Test
 	public void usernameNotFoundDuringLogin() throws UserNotFoundException, InvalidLoginException {
 		String username = "qwert";
