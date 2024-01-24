@@ -6,7 +6,7 @@ import java.util.Objects;
 import javax.persistence.*;
 
 @Entity
-@Table
+@Table(name="post")
 public class Post {
 
 	@Id

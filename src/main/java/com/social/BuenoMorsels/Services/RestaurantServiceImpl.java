@@ -1,21 +1,21 @@
 package com.social.BuenoMorsels.Services;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.social.BuenoMorsels.Beans.Restaurant;
-import com.social.BuenoMorsels.Repository.RestaurantRepository;
+import com.social.BuenoMorsels.Repository.RestaurantRepo;
+
 
 @Service
 @Transactional
 public class RestaurantServiceImpl implements RestaurantService {
 
-	private RestaurantRepository restRepo;
+	private RestaurantRepo restRepo;
 
-	@Autowired
-	public RestaurantServiceImpl(RestaurantRepository restRepo) {
+	
+	public RestaurantServiceImpl(RestaurantRepo restRepo) {
 		this.restRepo = restRepo;
 	}
 
