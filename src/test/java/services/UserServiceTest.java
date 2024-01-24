@@ -203,12 +203,76 @@ public class UserServiceTest {
 
 	}
 	
+	@Test
+	public void updateUserSuccessfully() throws UserNotFoundException {
+		String username = "qwert";
+		String password = "pass";
+
+		User mockUser = new User();
+		mockUser.setUsername(username);
+		mockUser.setPassword(password);
+
+		when(userRepo.findByUsername(username)).thenReturn(mockUser);
+		when(userRepo.save(mockUser)).thenReturn(mockUser);
+
+		User realUser = userServ.update(mockUser);
+
+		assertEquals(mockUser, realUser);
+
+	}
 	
 	
-	
+	@Test
+	public void updateUserUnsuccessfully() throws UserNotFoundException {
+		String username = "qwert";
+		String password = "pass";
 
+		User mockUser = new User();
+		mockUser.setUsername(username);
+		mockUser.setPassword(password);
 
+		when(userRepo.findByUsername(username)).thenReturn(null);
 
+		assertThrows(UserNotFoundException.class, () -> {
+			userServ.update(mockUser);
+		});
+
+	}
+
+	@Test
+	public void deleteUserSuccessfully() throws UserNotFoundException {
+		String username = "qwert";
+		String password = "pass";
+
+		User mockUser = new User();
+		mockUser.setUsername(username);
+		mockUser.setPassword(password);
+
+		when(userRepo.findByUsername(username)).thenReturn(mockUser);
+		when(userRepo.save(mockUser)).thenReturn(mockUser);
+
+		User realUser = userServ.deleteUser(mockUser);
+
+		assertEquals(mockUser, realUser);
+
+	}
+
+	@Test
+	public void deleteUserUnsuccessfully() throws UserNotFoundException {
+		String username = "qwert";
+		String password = "pass";
+
+		User mockUser = new User();
+		mockUser.setUsername(username);
+		mockUser.setPassword(password);
+
+		when(userRepo.findByUsername(username)).thenReturn(null);
+
+		assertThrows(UserNotFoundException.class, () -> {
+			userServ.deleteUser(mockUser);
+		});
+
+	}
 	
 	
 	
