@@ -57,23 +57,42 @@ public class UserServiceTest {
 		
 	}
 	
-//	@Test
-//	public void loginSuccessfully() throws UserNotFoundException, InvalidLoginException {
-//		String username = "qwert";
-//		String password = "pass";
-//		
-//		User mockUser = new User();
-//		mockUser.setUsername(username);
-//		mockUser.setPassword(password);
-//		
-//		when(userRepo.findByUsername(username)).thenReturn(mockUser);
-//		
-//		User realUser = userServ.login(username, password);
-//		
-//		assertEquals(mockUser, realUser);
-//		
-//	}
-//	
+	@Test
+	public void loginSuccessfully() throws UserNotFoundException, InvalidLoginException {
+		String username = "qwert";
+		String password = "pass";
+		
+		User mockUser = new User();
+		mockUser.setUsername(username);
+		mockUser.setPassword(password);
+		
+		when(userRepo.findByUsername(username)).thenReturn(mockUser);
+		
+		User realUser = userServ.login(username, password);
+		
+		assertEquals(mockUser, realUser);
+		
+	}
+	
+	@Test
+	public void loginUnsuccessfully() throws UserNotFoundException, InvalidLoginException {
+		String username = "qwert";
+		String password = "pass";
+
+		User mockUser = new User();
+		mockUser.setUsername(username);
+		mockUser.setPassword(password);
+
+		when(userRepo.findByUsername(username)).thenReturn(mockUser);
+
+		assertThrows(InvalidLoginException.class, () -> {
+			userServ.login(username, "wrongPassword");
+		});
+
+	}
+	
+	
+	
 	
 	
 	
