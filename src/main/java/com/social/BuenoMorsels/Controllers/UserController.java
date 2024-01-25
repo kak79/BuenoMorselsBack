@@ -53,14 +53,15 @@ public class UserController {
 	
 	
 	@PostMapping(path="/auth")
-	public ResponseEntity<User> login(@RequestBody Map<String, String> credentials) throws UserNotFoundException, InvalidLoginException {
+	public ResponseEntity<String> login(@RequestBody Map<String, String> credentials) throws UserNotFoundException, InvalidLoginException {
 		
 		String username = credentials.get("username");
 		String password = credentials.get("password");
 		
 		try {
 			User user = userServ.login(username, password);
-			return ResponseEntity.ok(user);
+			String token = Integer.toString(user.getUserId());
+			return ResponseEntity.ok(token);
 		} catch (UserNotFoundException e) {
 			return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
 		} catch (InvalidLoginException e) {
